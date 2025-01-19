@@ -64,9 +64,28 @@ matches = fixtures[['gameweek', 'kickoff_time', 'finished', 'team_h_score', 'tea
 # Convert kickoff_time to datetime
 matches.loc[:, 'kickoff_time'] = pd.to_datetime(matches['kickoff_time'], format = '%Y-%m-%dT%H:%M:%SZ')
 
+# Function to format timedelta into nice format
+def format_timedelta(td):
+    days = td.days
+    seconds = td.seconds
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+
+    parts = []
+    if days > 0:
+        parts.append(f"{days} day{'s' if days > 1 else ''}")
+    if hours > 0:
+        parts.append(f"{hours} hour{'s' if hours > 1 else ''}")
+    if minutes > 0:
+        parts.append(f"{minutes} minute{'s' if minutes > 1 else ''}")
+    
+    return ", ".join(parts)
+
 gw = matches[matches['gameweek']==23]['kickoff_time'].min()
 #st.table(matches)
 now = datetime.now()
-st.write(now+timedelta(hours=8))
+now_sg = datetime.now()+timedelta(hours=8)
+
+st.write('Next gameweek in: ' + format_timedelta(gw-now))
 
 st_autorefresh(interval=10000, key="autorefresh")
