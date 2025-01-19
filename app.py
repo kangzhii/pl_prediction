@@ -86,6 +86,10 @@ gw = matches[matches['gameweek']==23]['kickoff_time'].min()
 now = datetime.now()
 now_sg = datetime.now()+timedelta(hours=8)
 
-st.write(f'Gameweek 23 in: {format_timedelta(gw-now)}')
+# Hardcode countdown for gw23 for now
+if gw>now:
+    st.write(f'Gameweek 23 in: {format_timedelta(gw-now)}')
+else:
+    st.write('Gameweek 23 has passed')
 
 st_autorefresh(interval=10000, key="autorefresh")
