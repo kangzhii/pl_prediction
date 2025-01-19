@@ -64,4 +64,6 @@ matches = fixtures[['gameweek', 'kickoff_time', 'finished', 'team_h_score', 'tea
 
 #st.table(matches)
 
-st.write(datetime.now())
+st.write(datetime.now()+timedelta(hours=8))
+
+st_autorefresh(interval=10000, key="autorefresh")
