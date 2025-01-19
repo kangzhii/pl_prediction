@@ -27,7 +27,7 @@ score_table = pd.DataFrame([{
     'YY': st.session_state.yyscore
 }])
 
-if st.button('Click'):
+if st.button('Click to watch my score go up!!! SIIUUUUUU'):
     st.session_state.kzscore += 1
     st.rerun()
 
@@ -61,9 +61,12 @@ fixtures = fixtures.rename(columns={'event':'gameweek'})
 
 # Get relevant columns
 matches = fixtures[['gameweek', 'kickoff_time', 'finished', 'team_h_score', 'team_a_score', 'name_home', 'short_name_home', 'name_away', 'short_name_away']]
+# Convert kickoff_time to datetime
+matches.loc[:, 'kickoff_time'] = pd.to_datetime(matches['kickoff_time'], format = '%Y-%m-%dT%H:%M:%SZ')
 
+gw = matches[matches['gameweek']==23]['kickoff_time'].min()
 #st.table(matches)
-
-st.write(datetime.now()+timedelta(hours=8))
+now = datetime.now()
+st.write(now+timedelta(hours=8))
 
 st_autorefresh(interval=10000, key="autorefresh")
