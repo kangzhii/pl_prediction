@@ -86,6 +86,6 @@ gw = matches[matches['gameweek']==23]['kickoff_time'].min()
 now = datetime.now()
 now_sg = datetime.now()+timedelta(hours=8)
 
-st.write('Next gameweek in: ' + format_timedelta(gw-now))
+st.write(f'Gameweek 23 in: {format_timedelta(gw-now)}')
 
 st_autorefresh(interval=10000, key="autorefresh")
