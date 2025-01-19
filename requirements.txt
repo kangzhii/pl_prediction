@@ -1,1 +1,2 @@
+beautifulsoup4==4.12.3
 streamlit-autorefresh==1.0.1
